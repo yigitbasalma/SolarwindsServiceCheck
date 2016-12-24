@@ -89,7 +89,7 @@ class Db(object):
         try:
             self.write("INSERT INTO options values('last_execute_performance_and_repair', '{0}')".format(timestamp))
         except mdb.IntegrityError:
-            self.write("UPDATE options SET last_execute_performance_and_repair='{0}'".format(timestamp))
+            self.write("UPDATE options SET VAL='{0}' WHERE OPTIONS='last_execute_performance_and_repair'".format(timestamp))
         self.conn.commit()
 
 if __name__ == "__main__":
